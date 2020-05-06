@@ -4,6 +4,11 @@ package com.codeup.adlister.models;
 
 import java.util.ArrayList;
 
+
+
+
+
+
 public class Ad {
     private long id;
     private long userId;
@@ -11,14 +16,26 @@ public class Ad {
     private String description;
     private ArrayList<String> categories = new ArrayList<>();
 
-    //For editing Ads (fix this later)
-    public Ad(long id, long userId, String title, String description, String categories) {
+
+    public  Ad(long id, long userId, String title, String description, String...categories) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
-        this.categories.add(categories);
+        for (String i : categories){ //should add String of category for the amount of categories
+
+            this.categories.add(i);
+        }
     }
+
+    //For editing Ads (fix this later)
+//    public Ad(long id, long userId, String title, String description, String categories) {
+//        this.id = id;
+//        this.userId = userId;
+//        this.title = title;
+//        this.description = description;
+//        this.categories.add(categories);
+//    }
 
     //Make this one work (for when ad is first created)
     public Ad(long userId, String title, String description, ArrayList<String> categories) {
@@ -29,6 +46,9 @@ public class Ad {
     }
 
     public Ad(long id, long user_id, String title, String description) {
+    }
+
+    public Ad(long id, String title, String description, String categories) {
     }
 
 

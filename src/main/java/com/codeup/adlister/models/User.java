@@ -14,6 +14,9 @@ public class User {
         this.hash = hash; // replaced all "password"s with "hash"
     }
 
+    public User(long id, String username, String email, String password) {
+    } //required constructor for MySQLUsersDao extractUser method
+
 //    public User(long id, String username, String email, String password) {
 //        this.id = id;
 //        this.username = username;

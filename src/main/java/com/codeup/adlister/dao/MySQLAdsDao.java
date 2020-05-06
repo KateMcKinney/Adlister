@@ -2,6 +2,7 @@ package com.codeup.adlister.dao;
 
 import com.codeup.adlister.Config;
 import com.codeup.adlister.models.Ad;
+import com.codeup.adlister.models.User;
 import com.mysql.cj.jdbc.Driver;
 
 import java.sql.*;
@@ -51,14 +52,56 @@ public class MySQLAdsDao implements Ads {
     }
 
     @Override
-    public void deleteAd(int id) {
-        // FILL THIS IN
+    public void deleteAd(long id) {
+        String query = "DELETE FROM ads WHERE id = ? LIMIT 1";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setLong(1, id);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error finding a user by username", e);
+        }
     }
 
     @Override
-    public Ad editAd(Ad ad) {
-        // FILL THIS IN
-        return null;
+    public Ad editTitle(Long id) {
+        String query = "UPDATE ads SET title=? WHERE id=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, "title"); //we'll have to replace hard-coded string username with input on whatever form we're using to let user do it
+            stmt.setLong(2, id);
+            return extractAd(stmt.executeQuery());
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while trying to edit ad title", e);
+        }
+    }
+
+    @Override
+    public Ad editDescription(Long id) {
+        String query = "UPDATE ads SET description=? WHERE id=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, "description"); //we'll have to replace hard-coded string username with input on whatever form we're using to let user do it
+            stmt.setLong(2, id);
+            return extractAd(stmt.executeQuery());
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while trying to edit ad description", e);
+        }
+    }
+
+    @Override //NEED TO CORRECT
+    public Ad editCategories(Long id) {
+        String query = "UPDATE ad_categories SET cat=? WHERE id=?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, "password"); //we'll have to replace hard-coded string username with input on whatever form we're using to let user do it
+            stmt.setLong(2, id);
+            return extractUser(stmt.executeQuery());
+
+        } catch (SQLException e) {
+            throw new RuntimeException("Error while trying to edit password", e);
+        }
     }
 
     @Override

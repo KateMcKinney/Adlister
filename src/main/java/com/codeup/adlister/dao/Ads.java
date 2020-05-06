@@ -12,10 +12,12 @@ public interface Ads { //Ads DAO Interface
     Long insert(Ad ad);
 
     // Delete ad
-    void deleteAd (int id);
+    void deleteAd (long id);
 
     //Edit ad
-    Ad editAd (Ad ad);
+    Ad editTitle (Long id);
+
+    Ad editDescription(Long id);
 
 
 
