@@ -2,6 +2,8 @@ USE adlister_db;
 
 DROP TABLE IF EXISTS ads;
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS ad_categories;
+DROP TABLE IF EXISTS categories;
 
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -18,5 +20,59 @@ CREATE TABLE ads (
     description TEXT NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY (user_id) REFERENCES users(id)
-        ON DELETE CASCADE
+        ON DELETE CASCADE   # ----------------------- If user deletes profile, it will delete their ads too
 );
+
+CREATE TABLE categories (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name CHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO categories(name) VALUES
+('For Sale'),
+    ('Free'),
+    ('Electronics'),
+    ('Clothes and Accessories'),
+    ('Vehicles'),
+    ('Furniture'),
+    ('Other'),
+('Jobs'),
+    ('Weekend Jobs'),
+    ('Finance'),
+    ('Manufacturing'),
+    ('Sales'),
+    ('Retail'),
+('Community'),
+    ('Volunteering'),
+    ('Events'),
+    ('Pets'),
+    ('Local News'),
+    ('Lost and Found'),
+    ('Farmers'' Market'),
+('Housing'),
+    ('Real Estate'),
+    ('House Swap'),
+    ('House Parties'),
+    ('Vacation Rentals'),
+    ('Rooms Wanted'),
+    ('For Rent'),
+('Services'),
+    ('Automotive'),
+    ('Landscaping'),
+    ('Farm and Garden'),
+    ('Financial'),
+('Gigs'),
+    ('Crew'),
+    ('Talent'),
+    ('Musician'),
+    ('Domestic');
+
+CREATE TABLE ad_categories (
+    ad_id INT UNSIGNED NOT NULL,
+    cat_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (ad_id) REFERENCES ads(id),
+    FOREIGN KEY (cat_id) REFERENCES categories(id)
+);
+
+

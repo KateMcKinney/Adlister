@@ -9,19 +9,18 @@ public class Ad {
     private long userId;
     private String title;
     private String description;
-    private ArrayList<String> categories;
+    private ArrayList<String> categories = new ArrayList<>();
 
-    public Ad(long id, long user_id, String title, String description, String categories) {
-    }
-
-    public Ad(long id, long userId, String title, String description, ArrayList<String> categories) {
+    //For editing Ads (fix this later)
+    public Ad(long id, long userId, String title, String description, String categories) {
         this.id = id;
         this.userId = userId;
         this.title = title;
         this.description = description;
-        this.categories = categories;
+        this.categories.add(categories);
     }
 
+    //Make this one work (for when ad is first created)
     public Ad(long userId, String title, String description, ArrayList<String> categories) {
         this.userId = userId;
         this.title = title;
@@ -29,6 +28,8 @@ public class Ad {
         this.categories = categories;
     }
 
+    public Ad(long id, long user_id, String title, String description) {
+    }
 
 
     public long getId() {
