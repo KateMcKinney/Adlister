@@ -15,12 +15,12 @@ public interface Ads { //Ads DAO Interface
     void deleteAd (long id);
 
     //Edit ad
-    Ad editTitle (Long id);
+    Ad editTitle (long id);
 
-    Ad editDescription(Long id);
+    Ad editDescription(long id);
 
-    Ad editCategories (Long id);
+    Ad editCategories (long id);
 
     //get ad that user has chosen
-    Ad individualAd (int id);
+    Ad individualAd (long id);
 }

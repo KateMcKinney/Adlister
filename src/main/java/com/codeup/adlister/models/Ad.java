@@ -3,11 +3,7 @@ package com.codeup.adlister.models;
 // Added "categories" as an ArrayList<String>
 
 import java.util.ArrayList;
-
-
-
-
-
+import java.util.Arrays;
 
 public class Ad {
     private long id;
@@ -22,26 +18,14 @@ public class Ad {
         this.userId = userId;
         this.title = title;
         this.description = description;
-        for (String i : categories){ //should add String of category for the amount of categories
-            this.categories.add(i);
-        }
+        this.categories.addAll(Arrays.asList(categories));
     }
 
-    //For editing Ads (fix this later)
-//    public Ad(long id, long userId, String title, String description, String categories) {
-//        this.id = id;
-//        this.userId = userId;
-//        this.title = title;
-//        this.description = description;
-//        this.categories.add(categories);
-//    }
-
-    //Make this one work (for when ad is first created)
-    public Ad(long userId, String title, String description, ArrayList<String> categories) {
+    public Ad(long userId, String title, String description, String...categories) {
         this.userId = userId;
         this.title = title;
         this.description = description;
-        this.categories = categories;
+        this.categories.addAll(Arrays.asList(categories));
     }
 
     public Ad(long id, long user_id, String title, String description) {
