@@ -11,7 +11,7 @@ import java.util.List;
 import com.codeup.adlister.Config;
 
 public class MySQLAdsDao implements Ads {
-    private Connection connection = null;
+    private Connection connection;
 
     public MySQLAdsDao(Config config) {
         try {
@@ -97,7 +97,7 @@ public class MySQLAdsDao implements Ads {
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, "password"); //we'll have to replace hard-coded string username with input on whatever form we're using to let user do it
             stmt.setLong(2, id);
-            return extractUser(stmt.executeQuery());
+            return extractAd(stmt.executeQuery());
 
         } catch (SQLException e) {
             throw new RuntimeException("Error while trying to edit password", e);

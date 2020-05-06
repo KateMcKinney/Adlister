@@ -1,4 +1,5 @@
 package com.codeup.adlister.controllers;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import com.codeup.adlister.dao.DaoFactory;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +9,8 @@ import java.io.IOException;
 
 @WebServlet("/ad")
 public class IndividualAdServlet extends HttpServlet {
+
+    //Sends user to the Ad they clicked on
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException{
         //the id is being passed in as a url parameter called "id"
         int thisAdId = Integer.parseInt(request.getParameter("id"));

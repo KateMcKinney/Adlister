@@ -23,7 +23,6 @@ public class Ad {
         this.title = title;
         this.description = description;
         for (String i : categories){ //should add String of category for the amount of categories
-
             this.categories.add(i);
         }
     }
