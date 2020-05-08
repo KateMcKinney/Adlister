@@ -19,21 +19,36 @@ public class LoginServlet extends HttpServlet {
             response.sendRedirect("/profile");
             return;
         }
-        request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/users/login.jsp").forward(request, response);
     }
+
+    //commented out below until BCrypt/hashing pw is functioning
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+////        String username = request.getParameter("username");
+////        String password = request.getParameter("password");
+////        User user = DaoFactory.getUsersDao().findByUsername(username);
+////        if (user == null) {
+////            response.sendRedirect("/login");
+////            return;
+////        }
+////        boolean validAttempt = BCrypt.checkpw(password, user.getHash());
+////        if (validAttempt) {
+////            request.getSession().setAttribute("user", user);
+////            request.getSession().setAttribute("userID", user.getId());
+////            response.sendRedirect("/profile");
+////        } else {
+////            response.sendRedirect("/login");
+////        }
+////    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        User user = DaoFactory.getUsersDao().findByUsername(username);
-        if (user == null) {
-            response.sendRedirect("/login");
-            return;
-        }
-        boolean validAttempt = BCrypt.checkpw(password, user.getHash());
+
+        boolean validAttempt = username.equals("admin") && password.equals("password");
+
         if (validAttempt) {
-            request.getSession().setAttribute("user", user);
-            request.getSession().setAttribute("userID", user.getId());
+            request.getSession().setAttribute("user", username);
             response.sendRedirect("/profile");
         } else {
             response.sendRedirect("/login");
